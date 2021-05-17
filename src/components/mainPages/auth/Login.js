@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './Login.css';
+import {GlobalState} from '../../../GlobalState'
 
 function Login() {
+    // const state = useContext(GlobalState)
+    // const [token, setToken] = state.userAPI.token
+
     const [user, setUser] = useState({
         email:'', password: ''
     })
@@ -16,13 +20,15 @@ function Login() {
     const loginSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('/user/login', {...user})
+            await axios.post('http://localhost:5000/api/login', {...user})
 
+            // setToken(res.data.accesstoken)
+                console.log(user)
             localStorage.setItem('firstLogin', true)
             
             window.location.href = "/";
         } catch (err) {
-            alert(err.response.data.msg)
+            console.log(err)
         }
     }
 

@@ -1,11 +1,12 @@
+
 import React, {useContext, useState} from 'react'
-import {GlobalState} from '../../GlobalState';
+import {GlobalState} from '../../GlobalState'
 import Menu from './icon/menu.svg'
 import Close from './icon/close.svg'
 import Cart from './icon/cart.svg'
-import './Header.css';
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import axios from 'axios';
+import './Header.css';
 
 function Header() {
     const state = useContext(GlobalState)
@@ -15,7 +16,7 @@ function Header() {
     const [menu, setMenu] = useState(false)
 
     const logoutUser = async () =>{
-        await axios.get('/user/logout')
+        await axios.get('http://localhost:5000/api/logout')
         
         localStorage.removeItem('firstLogin')
         
@@ -52,16 +53,17 @@ function Header() {
             </div>
 
             <div className="logo">
-                <h6> 
+                <h1>
                     <Link to="/">{isAdmin ? 'Admin' : 'Phones Shop'}</Link>
-                </h6>
-            </div> 
+                </h1>
+            </div>
 
             <ul style={styleMenu}>
-                  <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
-                 {isAdmin && adminRouter()}
+                <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
 
-                 {
+                {isAdmin && adminRouter()}
+
+                {
                     isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>
                 }
 
@@ -73,8 +75,7 @@ function Header() {
 
             {
                 isAdmin ? '' 
-                :
-                <div className="cart-icon">
+                :<div className="cart-icon">
                     <span>{cart.length}</span>
                     <Link to="/cart">
                         <img src={Cart} alt="" width="30" />
@@ -86,4 +87,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Header;

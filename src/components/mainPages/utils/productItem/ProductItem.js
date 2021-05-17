@@ -1,5 +1,5 @@
-import React from 'react'
-import BtnRender from './BtnRender'
+import React from 'react';
+import BtnRender from './BtnRender';
 
 function ProductItem({product, isAdmin, deleteProduct, handleCheck}) {
 
@@ -9,10 +9,10 @@ function ProductItem({product, isAdmin, deleteProduct, handleCheck}) {
                 isAdmin && <input type="checkbox" checked={product.checked}
                 onChange={() => handleCheck(product._id)} />
             }
-            <img src={product.images.url} alt="" />
+            <img src={product.imageFileName.url} alt="" />
 
             <div className="product_box">
-                <h2 title={product.title}>{product.title}</h2>
+                <h2 title={product.name}>{product.name}</h2>
                 <span>${product.price}</span>
                 <p>{product.description}</p>
             </div>

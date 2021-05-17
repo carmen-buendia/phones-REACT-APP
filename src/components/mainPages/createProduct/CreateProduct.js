@@ -39,7 +39,7 @@ function CreateProduct() {
             products.forEach(product => {
                 if(product._id === param.id) {
                     setProduct(product)
-                    setImages(product.images)
+                    setImages(product.imageFileName)
                 }
             })
         }else{
@@ -67,8 +67,8 @@ function CreateProduct() {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/api/upload', formData, {
-                headers: {'content-type': 'multipart/form-data'}
+            const res = await axios.post('http://localhost:5000/api/upload', formData, {
+                headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
             setImages(res.data)
@@ -82,7 +82,7 @@ function CreateProduct() {
         try {
             if(!isAdmin) return alert("You're not an admin")
             setLoading(true)
-            await axios.post('/api/destroy', {public_id: images.public_id}, {
+            await axios.post('http://localhost:5000/api/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -104,11 +104,11 @@ function CreateProduct() {
             if(!images) return alert("No Image Upload")
 
             if(onEdit){
-                await axios.put(`/api/phones/${product._id}`, {...product, images}, {
+                await axios.put(`http://localhost:5000/api/upload ${product._id}`, {...product, images}, {
                     headers: {Authorization: token}
                 })
             }else{
-                await axios.post('/api/phones', {...product, images}, {
+                await axios.post('http://localhost:5000/api/upload', {...product, images}, {
                     headers: {Authorization: token}
                 })
             }

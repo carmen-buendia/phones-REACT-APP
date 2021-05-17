@@ -4,7 +4,6 @@ import {DataProvider} from './GlobalState';
 import Header from './components/header/Header';
 import MainPages from './components/mainPages/Pages';
 
-
 function App() {
   return (
     <DataProvider>

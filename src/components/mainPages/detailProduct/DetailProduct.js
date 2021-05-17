@@ -26,7 +26,7 @@ function DetailProduct() {
     return (
         <>
             <div className="detail">
-                <img src={detailProduct.images.url} alt="" />
+                <img src={detailProduct.imageFileName.url} alt="" />
                 <div className="box-detail">
                     <div className="row">
                         <h2>{detailProduct.name}</h2>

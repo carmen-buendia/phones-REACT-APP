@@ -13,7 +13,7 @@ function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
     const [isAdmin] = state.userAPI.isAdmin
-    // const [token] = state.token
+    const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
     const [isCheck, setIsCheck] = useState(false)
@@ -28,11 +28,11 @@ function Products() {
     const deleteProduct = async(id, public_id) => {
         try {
             setLoading(true)
-            const destroyImg = axios.post('/api/destroy', {public_id},{
-                // headers: {Authorization: token}
+            const destroyImg = axios.post('http://localhost:5000/api/destroy', {public_id},{
+                headers: {Authorization: token}
             })
-            const deleteProduct = axios.delete(`/api/phones/${id}`, {
-                // headers: {Authorization: token}
+            const deleteProduct = axios.delete(`http://localhost:5000/api/phones/${id}`, {
+                headers: {Authorization: token}
             })
 
             await destroyImg
@@ -54,7 +54,7 @@ function Products() {
 
     const deleteAll = () =>{
         products.forEach(product => {
-            if(product.checked) deleteProduct(product._id, product.images.public_id)
+            if(product.checked) deleteProduct(product._id, product.imageFileName.public_id)
         })
     }
 
@@ -87,4 +87,4 @@ function Products() {
     )
 }
 
-export default Products
+export default Products;

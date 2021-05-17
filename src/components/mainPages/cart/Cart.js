@@ -1,12 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {GlobalState} from '../../../GlobalState';
 import axios from 'axios';
+import PaypalButton from './PaypalButton';
 import  './Cart.css';
 
 function Cart() {
     const state = useContext(GlobalState);
     const [cart, setCart] = state.userAPI.cart;
-    // const [token] = state.token
+    const [token] = state.token
     const [total, setTotal] = useState(0);
 
     useEffect(() =>{
@@ -23,8 +24,8 @@ function Cart() {
     },[cart])
 
     const addToCart = async (cart) =>{
-        await axios.patch('/user/addcart', {cart}, {
-            // headers: {Authorization: token}
+        await axios.patch('http://localhost:5000/api/addcart', {cart}, {
+            headers: {Authorization: token}
         })
     }
 
@@ -67,8 +68,8 @@ function Cart() {
     const tranSuccess = async(payment) => {
         const {paymentID, address} = payment;
 
-        await axios.post('/api/payment', {cart, paymentID, address}, {
-            // headers: {Authorization: token}
+        await axios.post('http://localhost:5000/api/payment', {cart, paymentID, address}, {
+            headers: {Authorization: token}
         })
 
         setCart([])
