@@ -1,13 +1,13 @@
 # phones-REACT-APP
 
 # Work in branch:
-app
+## app
 
 # Install dependencies for client:
- npm install
+## npm install
  
  # Run the React client only:
- npm start
+## npm start
  
  # Ru client on:
  http://localhost:3000
