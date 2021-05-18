@@ -8,28 +8,31 @@ import './History.css';
 function OrderHistory() {
     const state = useContext(GlobalState)
     const [history, setHistory] = state.userAPI.history
-    const [isAdmin] = state.userAPI.isAdmin
+    // const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
     
 
     useEffect(() => {
         if(token){
             const getHistory = async() =>{
-                if(isAdmin){
-                    const res = await axios.get('http://localhost:5000/api/payment', {
-                        headers: {Authorization: token}
-                    })
-                    setHistory(res.data)
-                }else{
+               
+                
+                    // const res = await axios.get('http://localhost:5000/api/payment', {
+                    //     headers: {Authorization: token}
+                    // })
+                    // setHistory(res.data)
+              
                     const res = await axios.get('http://localhost:5000/api/history', {
                         headers: {Authorization: token}
                     })
                     setHistory(res.data)
-                }
+                
             }
             getHistory()
         }
-    },[token, isAdmin, setHistory])
+    },[token, 
+        // isAdmin, 
+        setHistory])
 
     return (
         <div className="history-page">

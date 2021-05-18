@@ -12,7 +12,7 @@ import './Products.css';
 function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products
-    const [isAdmin] = state.userAPI.isAdmin
+    // const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
@@ -64,7 +64,7 @@ function Products() {
         <Filters />
         
         {
-            isAdmin && 
+            // isAdmin && 
             <div className="delete-all">
                 <span>Select all</span>
                 <input type="checkbox" checked={isCheck} onChange={checkAll} />
@@ -76,7 +76,8 @@ function Products() {
             {
                 products.map(product => {
                     return <ProductItem key={product._id} product={product}
-                    isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck} />
+                    // isAdmin={isAdmin} 
+                    deleteProduct={deleteProduct} handleCheck={handleCheck} />
                 })
             } 
         </div>

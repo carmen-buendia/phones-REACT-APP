@@ -12,7 +12,7 @@ import CreateProducts from '../mainPages/createProduct/CreateProduct';
 function Header() {
     const state = useContext(GlobalState)
     const [isLogged] = state.userAPI.isLogged
-    const [isAdmin] = state.userAPI.isAdmin
+    // const [isAdmin] = state.userAPI.isAdmin
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
 
@@ -78,8 +78,9 @@ function Header() {
             </ul>
 
             {
-                isAdmin ? '' 
-                :<div className="cart-icon">
+                // isAdmin ? '' 
+                // :
+                <div className="cart-icon">
                     <span>{cart.length}</span>
                     <Link to="/cart">
                         <img src={Cart} alt="" width="30" />
