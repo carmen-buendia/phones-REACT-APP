@@ -4,14 +4,14 @@ import {GlobalState} from '../../../../GlobalState';
 
 function BtnRender({product, deleteProduct}) {
     const state = useContext(GlobalState)
-    const [isAdmin] = state.userAPI.isAdmin
+    // const [isAdmin] = state.userAPI.isAdmin
     const addCart = state.userAPI.addCart
 
     
     return (
         <div className="row_btn">
-            {
-                isAdmin ? 
+            {/* {
+                isAdmin ?  */}
                 <>
                     <Link id="btn_buy" to="#!" 
                     onClick={() =>deleteProduct(product._id, product.images.public_id)}>
@@ -21,7 +21,8 @@ function BtnRender({product, deleteProduct}) {
                         Edit
                     </Link>
                 </>
-                : <>
+                {/* :  */}
+                <>
                     <Link id="btn_buy" to="#!" onClick={() => addCart(product)}>
                         Buy
                     </Link>
@@ -29,7 +30,7 @@ function BtnRender({product, deleteProduct}) {
                         View
                     </Link>
                 </>
-            }
+            {/* } */}
                 
         </div>
     )
